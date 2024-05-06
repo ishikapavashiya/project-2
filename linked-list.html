@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class link {
+            constructor(list) {
+                this.data = {
+                    list: list,
+                    next: null,
+                }
+                this.tail = this.data;
+                this.next = null;
+                this.size = 2;
+            }
+            print(list) {
+                let cou = 0;
+                let curr = this.data
+                do {
+                    console.log(curr);
+                    curr = curr.next;
+                    cou++;
+                } while (cou < this.size && curr !== null);
+            }
+            push(data) {
+                let list = {
+                   data: data,
+                    next: null,
+                }
+                this.tail.next = list
+                this.tail = list;
+                this.size = this.size + 1;
+            }
+            // =========remove====================
+            remove(index) {
+                let cou = 0;
+                let curr = this.head;
+
+                if (index === 1) {
+                    console.log("You cannot remove.");
+                } else {
+                    do {
+                        curr = curr.next;
+                        cou++;
+                    } while (cou < index - 1 && curr !== null);
+                    if (curr === null || curr.next === null) {
+                        console.log("Index is out of bounds.");
+                        return;
+                    }
+                    curr.next = curr.next.next;
+                    this.size--;
+                }
+            }
+
+        }
+        let s1 = new link(100)
+        //push
+        console.log("push");
+        s1.push(40)
+        s1.push(50)
+        console.log(s1);
+        // print
+        console.log("print");
+        s1.print()
+        //remove
+        console.log("remove");
+        s1.remove(2)
+        s1.print()
+    </script>
+</body>
+
+</html>
